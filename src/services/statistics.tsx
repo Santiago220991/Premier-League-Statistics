@@ -1,16 +1,15 @@
 import axios from "axios";
 import {League} from "../models/league";
-import { APIURL, KEY, HOST } from '../constants/api'
+import { APIURL, APIKEY, HOST } from '../constants/api'
 
 const getLeagueStatisticsService = async (): Promise<League> => {
     try {
         const response = await axios.get(`${APIURL}`, {
             headers: {
                 "x-rapidapi-host": HOST,
-                "x-rapidapi-key": KEY,
+                "x-rapidapi-key": APIKEY,
             },
         });
-        console.log(response.data.response[0].league.standings)
         const LeagueData = response.data.response[0].league;
         const LeagueStandings = response.data.response[0].league.standings[0];
         delete LeagueData["standings"];
