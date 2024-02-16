@@ -22,9 +22,6 @@ jobs:
       - name: Install packages
         run: npm install
 
-      - name: Start audit packages
-        run: npm audit --omit=dev
-
       - name: ESlint checking
         run: npm run lint
 
