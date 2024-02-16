@@ -1,7 +1,7 @@
 import React  from 'react';
 import {createContext, useEffect, useMemo, useState} from "react";
-import getLeagueStatisticsService from "../services/statistics";
-import { LeagueData, LeagueStanding } from "../models/league";
+import { LeagueData, LeagueStanding } from '../models';
+import { getLeagueStatisticsService } from '../services';
 
 interface LeagueContextValue {
   statistics: LeagueStanding[]|null

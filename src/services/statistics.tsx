@@ -1,6 +1,6 @@
 import axios from "axios";
-import {League} from "../models/league";
 import { APIURL, APIKEY, HOST } from '../constants/api'
+import { League } from "../models";
 
 const getLeagueStatisticsService = async (): Promise<League> => {
     try {

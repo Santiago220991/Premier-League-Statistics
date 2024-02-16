@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import {APIURL} from "../../constants/api";
-import getLeagueStatisticsService from "../../services/statistics";
+import { getLeagueStatisticsService } from "../../services";
 
 const mockResponse = {
     data: {
