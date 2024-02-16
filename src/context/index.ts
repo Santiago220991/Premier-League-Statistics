@@ -1,1 +1,1 @@
-export { default as LeagueProvider } from './league_context';
+export * from './league_context';
