@@ -26,6 +26,6 @@ jobs:
         run: npm run lint
 
       - name: Testing with Jest
-        run: npm test src/
+        run: npm test
 
      
