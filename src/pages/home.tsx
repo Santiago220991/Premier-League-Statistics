@@ -1,13 +1,17 @@
 import React from "react";
 import {Typography} from "@mui/material";
 import {useLeagueContext} from "../hooks";
-import {TeamCard} from "../components";
+import {LoadingComponent, TeamCard} from "../components";
 
 function Home() {
-    const {statistics, league} = useLeagueContext();
-
+    const {statistics, league, loading} = useLeagueContext();
+    if (loading) {
+        return <LoadingComponent />;
+    }
     return (
-        <div data-testid="home-container">
+        <div
+            data-testid="home-container"
+            style={{paddingLeft: "5%", paddingRight: "5%"}}>
             <header>
                 <Typography align="center" variant="h4">
                     Premier League
@@ -18,8 +22,6 @@ function Home() {
                     display: "flex",
                     alignItems: "center",
                     flexDirection: "column",
-                    paddingLeft: "5%",
-                    paddingRight: "5%",
                 }}>
                 <img src={league?.logo} />
                 <Typography sx={{marginTop: "5%"}}>2022-2023</Typography>

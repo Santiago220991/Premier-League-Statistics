@@ -6,11 +6,13 @@ import {getLeagueStatisticsService} from "../services";
 interface LeagueContextValue {
     statistics: LeagueStanding[] | null;
     league: LeagueData | null;
+    loading: boolean;
 }
 
 const LeagueContext = createContext<LeagueContextValue>({
     statistics: null,
     league: null,
+    loading: false,
 });
 
 function LeagueProvider({children}: {children: React.ReactNode}) {
