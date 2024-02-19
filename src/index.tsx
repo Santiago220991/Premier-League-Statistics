@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import LeagueProvider from "./context/league_context";
+import { Home } from "./pages";
+import { LeagueProvider } from "./context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement,
@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <LeagueProvider>
-      <App />
+      <Home />
     </LeagueProvider>
   </React.StrictMode>,
 );
