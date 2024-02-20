@@ -1,5 +1,5 @@
 import React from "react";
-import {Typography} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import {useLeagueContext} from "../hooks";
 import {LoadingComponent, TeamCard, SearchBar} from "../components";
 
@@ -12,8 +12,12 @@ function Home() {
     return (
         <div
             data-testid="home-container"
-            style={{paddingLeft: "5%", paddingRight: "5%"}}>
-            <header style={{marginTop: "5vh"}}>
+            style={{
+                paddingLeft: "5%",
+                paddingRight: "5%",
+                paddingBottom: "5vh",
+            }}>
+            <header style={{paddingTop: "5vh"}}>
                 <Typography align="center" variant="h4">
                     <strong>Premier League</strong>
                 </Typography>
@@ -25,7 +29,7 @@ function Home() {
                     flexDirection: "column",
                 }}>
                 <img src={league?.logo} />
-                <Typography sx={{marginTop: "5%"}}>2022-2023</Typography>
+                <Typography sx={{marginTop: "5hv"}}>2022-2023</Typography>
             </div>
             <div
                 style={{
@@ -38,18 +42,23 @@ function Home() {
                 </Typography>
                 <SearchBar />
             </div>
-            <div>
-                {searchedStatistics ? (
+            <Box
+                sx={{
+                    display: "flex",
+                    flexDirection: {xs: "column", sm: "row"},
+                    columnGap: {sm: "3%", alignItems: "center"},
+                    flexWrap: "wrap",
+                    justifyContent: "center"
+                }}>
+                {searchedStatistics && (
                     searchedStatistics.map((teamStatistics, index) => (
                         <TeamCard
                             teamStatistics={teamStatistics}
                             key={`teamCard-${index}`}
                         />
                     ))
-                ) : (
-                    <div />
                 )}
-            </div>
+            </Box>
         </div>
     );
 }

@@ -7,7 +7,14 @@ import {LeagueStanding} from "../../models";
 
 function TeamCard({teamStatistics}: {teamStatistics: LeagueStanding}) {
     return (
-        <Card data-testid="team-card-container" sx={{maxWidth: 345, marginTop: "5%"}}>
+        <Card
+            data-testid="team-card-container"
+            sx={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: "5%",
+                width: {xs: 320},
+            }}>
             <CardActionArea>
                 <div
                     style={{
@@ -35,4 +42,4 @@ function TeamCard({teamStatistics}: {teamStatistics: LeagueStanding}) {
     );
 }
 
-export default TeamCard
+export default TeamCard;
