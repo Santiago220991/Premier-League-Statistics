@@ -1,4 +1,4 @@
-import React from "react";
+import React, {SetStateAction} from "react";
 import {createContext, useEffect, useMemo, useState} from "react";
 import {LeagueData, LeagueStanding} from "../models";
 import {getLeagueStatisticsService} from "../services";
@@ -7,18 +7,23 @@ interface LeagueContextValue {
     statistics: LeagueStanding[] | null;
     league: LeagueData | null;
     loading: boolean;
+    setSearchName: React.Dispatch<SetStateAction<string>>;
+    searchedStatistics: LeagueStanding[] | undefined;
 }
 
 const LeagueContext = createContext<LeagueContextValue>({
     statistics: null,
     league: null,
     loading: false,
+    setSearchName: () => {},
+    searchedStatistics: [],
 });
 
 function LeagueProvider({children}: {children: React.ReactNode}) {
     const [loading, setLoading] = useState<boolean>(true);
     const [statistics, setStatistics] = useState<LeagueStanding[] | null>(null);
     const [league, setLeague] = useState<LeagueData | null>(null);
+    const [searchName, setSearchName] = useState<string>("");
 
     const getLeagueStatistics = async () => {
         setLoading(true);
@@ -33,6 +38,10 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
         }
     };
 
+    const searchedStatistics = statistics?.filter(statistic =>
+        statistic.team.name.toLowerCase().includes(searchName!),
+    );
+
     useEffect(() => {
         getLeagueStatistics();
     }, []);
@@ -42,8 +51,10 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
             loading,
             statistics,
             league,
+            setSearchName,
+            searchedStatistics,
         }),
-        [loading, statistics, league],
+        [loading, statistics, league, setSearchName, searchedStatistics],
     );
 
     return (

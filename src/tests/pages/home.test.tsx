@@ -13,4 +13,13 @@ describe("Home ", () => {
             "Premier League",
         );
     });
+    test("should contain role tags", () => {
+        const homeComponent = HomeActions.renderComponent();
+        homeComponent.component.expect.toHasRole("img", 3);
+    });
+
+    test("should render a searchBar", () => {
+        const homeComponent = HomeActions.renderComponent();
+        homeComponent.component.expect.toBeShown("searchBar-container");
+    });
 });
