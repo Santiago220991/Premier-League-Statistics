@@ -1,6 +1,6 @@
 import {HeaderActions} from "./header.testActions";
 
-describe("SearchBar ", () => {
+describe("Header ", () => {
     test("should render in the page", () => {
         const headerComponent = HeaderActions.renderComponent();
         headerComponent.component.expect.toBeShown("header-container");
