@@ -1,7 +1,7 @@
 import React from "react";
 import {Box, Typography} from "@mui/material";
 import {useLeagueContext} from "../hooks";
-import {LoadingComponent, TeamCard, SearchBar} from "../components";
+import {LoadingComponent, TeamCard, SearchBar, Header} from "../components";
 
 function Home() {
     const {league, loading, searchedStatistics} = useLeagueContext();
@@ -17,11 +17,7 @@ function Home() {
                 paddingRight: "5%",
                 paddingBottom: "5vh",
             }}>
-            <header style={{paddingTop: "5vh"}}>
-                <Typography align="center" variant="h4">
-                    <strong>Premier League</strong>
-                </Typography>
-            </header>
+            <Header />
             <div
                 style={{
                     display: "flex",
