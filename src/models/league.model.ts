@@ -26,13 +26,13 @@ export interface LeagueStanding {
     form:        string;
     status:      Status;
     description: null | string;
-    all:         All;
-    home:        All;
-    away:        All;
+    all:         SideStatistics;
+    home:        SideStatistics;
+    away:        SideStatistics;
     update:      Date;
 }
 
-export interface All {
+export interface SideStatistics {
     played: number;
     win:    number;
     draw:   number;
