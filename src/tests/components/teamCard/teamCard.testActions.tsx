@@ -1,7 +1,8 @@
-import React from "react"
+import React from "react";
 import {render, screen} from "@testing-library/react";
-import { Name, Status } from "../../../models";
+import {Name, Status} from "../../../models";
 import TeamCard from "../../../components/teamCard/teamCard";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 const getComponentByTestId = (componentTestId: string) => {
     try {
@@ -60,7 +61,16 @@ const teamStatistics = {
 export const TeamCardActions = {
     renderComponent: () => {
         jest.resetAllMocks();
-        render(<TeamCard teamStatistics={teamStatistics} />);
+        render(
+            <BrowserRouter>
+                <Routes>
+                    <Route
+                        path="/"
+                        element={<TeamCard teamStatistics={teamStatistics} />}
+                    />
+                </Routes>
+            </BrowserRouter>,
+        );
         return {
             component: {
                 expect: {
@@ -68,10 +78,10 @@ export const TeamCardActions = {
                         const component = getComponentByTestId(testId);
                         expect(component).toBeTruthy();
                     },
-                    toHasText:(testId: string, text: string) => {
+                    toHasText: (testId: string, text: string) => {
                         const component = getComponentByTestId(testId);
-                        expect(component).toHaveTextContent(text)
-                    }
+                        expect(component).toHaveTextContent(text);
+                    },
                 },
             },
         };

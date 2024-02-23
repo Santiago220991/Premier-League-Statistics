@@ -4,10 +4,13 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import {CardActionArea} from "@mui/material";
 import {LeagueStanding} from "../../models";
+import {useNavigate} from "react-router-dom";
 
 function TeamCard({teamStatistics}: {teamStatistics: LeagueStanding}) {
+    const navigate = useNavigate();
     return (
         <Card
+            onClick={() => navigate(`details/${teamStatistics.team.id}`)}
             data-testid="team-card-container"
             sx={{
                 display: "flex",

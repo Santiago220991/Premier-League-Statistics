@@ -1,7 +1,8 @@
 import React from "react";
 import {render, screen} from "@testing-library/react";
-import {Name, Status} from "../../models";
-import {Home} from "../../pages";
+import {Name, Status} from "../../../models";
+import {Home} from "../../../pages";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 const getComponentByTestId = (componentTestId: string) => {
     try {
@@ -119,14 +120,20 @@ const mockLeagueContext = {
     },
 };
 
-jest.mock("../../hooks", () => ({
+jest.mock("../../../hooks", () => ({
     useLeagueContext: () => mockLeagueContext,
 }));
 
 export const HomeActions = {
     renderComponent: () => {
         jest.resetAllMocks();
-        render(<Home />);
+        render(
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                </Routes>
+            </BrowserRouter>,
+        );
         return {
             component: {
                 expect: {
