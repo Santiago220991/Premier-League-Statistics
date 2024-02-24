@@ -9,6 +9,8 @@ interface LeagueContextValue {
     loading: boolean;
     setSearchName: React.Dispatch<SetStateAction<string>>;
     searchedStatistics: LeagueStanding[] | undefined;
+    season: string;
+    setSeason: React.Dispatch<SetStateAction<string>>;
 }
 
 const LeagueContext = createContext<LeagueContextValue>({
@@ -17,6 +19,8 @@ const LeagueContext = createContext<LeagueContextValue>({
     loading: false,
     setSearchName: () => {},
     searchedStatistics: [],
+    season: "",
+    setSeason: () => {},
 });
 
 function LeagueProvider({children}: {children: React.ReactNode}) {
@@ -24,11 +28,12 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
     const [statistics, setStatistics] = useState<LeagueStanding[] | null>(null);
     const [league, setLeague] = useState<LeagueData | null>(null);
     const [searchName, setSearchName] = useState<string>("");
+    const [season, setSeason] = useState<string>("2023");
 
-    const getLeagueStatistics = async () => {
+    const getLeagueStatistics = async (season: string) => {
         setLoading(true);
         try {
-            const response = await getLeagueStatisticsService();
+            const response = await getLeagueStatisticsService(season);
             setLeague(response.LeagueData);
             setStatistics(response.LeagueStandings);
         } catch (err) {
@@ -43,8 +48,8 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
     );
 
     useEffect(() => {
-        getLeagueStatistics();
-    }, []);
+        getLeagueStatistics(season);
+    }, [season]);
 
     const contextValue: LeagueContextValue = useMemo(
         () => ({
@@ -53,8 +58,18 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
             league,
             setSearchName,
             searchedStatistics,
+            season,
+            setSeason,
         }),
-        [loading, statistics, league, setSearchName, searchedStatistics],
+        [
+            loading,
+            statistics,
+            league,
+            setSearchName,
+            searchedStatistics,
+            season,
+            setSeason,
+        ],
     );
 
     return (

@@ -1,10 +1,17 @@
 import React from "react";
 import {Box, Typography} from "@mui/material";
 import {useLeagueContext} from "../hooks";
-import {LoadingComponent, TeamCard, SearchBar, Header} from "../components";
+import {
+    LoadingComponent,
+    TeamCard,
+    SearchBar,
+    Header,
+    SeasonSelector,
+} from "../components";
 
 function Home() {
     const {league, loading, searchedStatistics} = useLeagueContext();
+
     if (loading) {
         return <LoadingComponent />;
     }
@@ -25,7 +32,9 @@ function Home() {
                     flexDirection: "column",
                 }}>
                 <img src={league?.logo} />
-                <Typography sx={{marginTop: "5hv"}}>2022-2023</Typography>
+                <Box sx={{marginTop:"3vh", marginBottom:"3vh", width:200}}>
+                <SeasonSelector />
+                </Box>
             </div>
             <div
                 style={{
@@ -44,16 +53,15 @@ function Home() {
                     flexDirection: {xs: "column", sm: "row"},
                     columnGap: {sm: "3%", alignItems: "center"},
                     flexWrap: "wrap",
-                    justifyContent: "center"
+                    justifyContent: "center",
                 }}>
-                {searchedStatistics && (
+                {searchedStatistics &&
                     searchedStatistics.map((teamStatistics, index) => (
                         <TeamCard
                             teamStatistics={teamStatistics}
                             key={`teamCard-${index}`}
                         />
-                    ))
-                )}
+                    ))}
             </Box>
         </div>
     );

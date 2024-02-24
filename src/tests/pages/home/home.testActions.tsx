@@ -4,6 +4,7 @@ import {Name, Status} from "../../../models";
 import {Home} from "../../../pages";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
+
 const getComponentByTestId = (componentTestId: string) => {
     try {
         return screen.queryByTestId(componentTestId);
@@ -118,11 +119,12 @@ const mockLeagueContext = {
     league: {
         logo: "https://example.com/logo.png",
     },
+    season: "2023"
 };
 
 jest.mock("../../../hooks", () => ({
-    useLeagueContext: () => mockLeagueContext,
-}));
+    useLeagueContext: () => mockLeagueContext
+}))
 
 export const HomeActions = {
     renderComponent: () => {

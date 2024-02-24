@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import {APIURL} from "../../constants/api";
-import { getLeagueStatisticsService } from "../../services";
+import {getLeagueStatisticsService} from "../../services";
 
 const mockResponse = {
     data: {
@@ -42,21 +42,21 @@ describe("getLeagueStatisticsService", () => {
     });
 
     it("should return a League object on successful response", async () => {
-        const response = await getLeagueStatisticsService();
+        const season="2023"
+        const response = await getLeagueStatisticsService(season);
 
         expect(axios.get).toHaveBeenCalledTimes(1);
-        expect(axios.get).toHaveBeenCalledWith(`${APIURL}`, expect.anything());
+        expect(axios.get).toHaveBeenCalledWith(`${APIURL}${season}`, expect.anything());
         expect(response).toEqual(expectedResponse);
     });
 
     it("should throw an error on network error", async () => {
         (axios.get as jest.Mock).mockRejectedValue(new Error("Network error"));
         try {
-            await getLeagueStatisticsService();
+            await getLeagueStatisticsService("2023");
             fail("Function did not throw error");
-        } catch (error:unknown|any) {
+        } catch (error: unknown | any) {
             expect(error?.message).toBe("Error getting data from the API");
         }
     });
-
 });

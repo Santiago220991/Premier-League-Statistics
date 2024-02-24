@@ -1,10 +1,10 @@
 import axios from "axios";
-import { APIURL, APIKEY, HOST } from '../constants/api'
-import { League } from "../models";
+import {APIURL, APIKEY, HOST} from "../constants/api";
+import {League} from "../models";
 
-const getLeagueStatisticsService = async (): Promise<League> => {
+const getLeagueStatisticsService = async (season: string): Promise<League> => {
     try {
-        const response = await axios.get(`${APIURL}`, {
+        const response = await axios.get(`${APIURL}${season}`, {
             headers: {
                 "x-rapidapi-host": HOST,
                 "x-rapidapi-key": APIKEY,
