@@ -12,7 +12,9 @@ function SecondaryStatistics({
             sx={{
                 display: "flex",
                 justifyContent: "space-between",
-                marginTop: "3vh"
+                marginTop: "3vh",
+                marginLeft:{sm:"20%"},
+                marginRight:{sm:"20%"}
             }}>
             <Box
                 sx={{
