@@ -4,3 +4,4 @@ export * from "./searchBar";
 export * from "./header";
 export * from "./mainStatistics";
 export * from "./secondaryStatistics";
+export * from "./seasonSelector";
