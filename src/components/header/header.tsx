@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {Typography} from "@mui/material";
 
 function Header() {
@@ -11,4 +11,4 @@ function Header() {
     );
 }
 
-export default Header
+export default Header;

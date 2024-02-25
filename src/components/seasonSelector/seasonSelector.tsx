@@ -3,7 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import {useLeagueContext} from "../../hooks";
-import { FormControl } from "@mui/material";
+import {FormControl} from "@mui/material";
 
 const seasonsList = ["2019", "2020", "2021", "2022", "2023"];
 
@@ -12,7 +12,7 @@ function SeasonSelector() {
 
     return (
         <FormControl fullWidth>
-            <InputLabel shrink >Season</InputLabel>
+            <InputLabel shrink>Season</InputLabel>
             <Select
                 data-testid="seasonSelector-container"
                 id="season-selector"
@@ -25,7 +25,7 @@ function SeasonSelector() {
                     </MenuItem>
                 ))}
             </Select>
-        </FormControl >
+        </FormControl>
     );
 }
 

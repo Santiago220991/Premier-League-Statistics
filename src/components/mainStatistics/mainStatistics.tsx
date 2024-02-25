@@ -8,7 +8,14 @@ function MainStatistics({teamStatistics}: {teamStatistics: LeagueStanding}) {
     const goalsAgainst = teamStatistics.all.goals.against;
 
     return (
-        <Box data-testid="main-statistics-container" sx={{display: "flex", justifyContent: "center", columnGap: "3%", marginTop: "5vh"}}>
+        <Box
+            data-testid="main-statistics-container"
+            sx={{
+                display: "flex",
+                justifyContent: "center",
+                columnGap: "3%",
+                marginTop: "5vh",
+            }}>
             <img src={teamStatistics.team?.logo} />
             <Box>
                 <Typography variant="h6">

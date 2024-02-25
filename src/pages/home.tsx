@@ -7,6 +7,7 @@ import {
     SearchBar,
     Header,
     SeasonSelector,
+    SortFilter,
 } from "../components";
 
 function Home() {
@@ -17,7 +18,7 @@ function Home() {
     }
 
     return (
-        <div
+        <Box
             data-testid="home-container"
             style={{
                 paddingLeft: "5%",
@@ -25,18 +26,18 @@ function Home() {
                 paddingBottom: "5vh",
             }}>
             <Header />
-            <div
+            <Box
                 style={{
                     display: "flex",
                     alignItems: "center",
                     flexDirection: "column",
                 }}>
                 <img src={league?.logo} />
-                <Box sx={{marginTop:"3vh", marginBottom:"3vh", width:200}}>
-                <SeasonSelector />
+                <Box sx={{marginTop: "3vh", marginBottom: "3vh", width: 200}}>
+                    <SeasonSelector />
                 </Box>
-            </div>
-            <div
+            </Box>
+            <Box
                 style={{
                     display: "flex",
                     justifyContent: "space-between",
@@ -46,7 +47,17 @@ function Home() {
                     <strong>TEAMS</strong>
                 </Typography>
                 <SearchBar />
-            </div>
+            </Box>
+            <Box
+                sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: "5vh",
+                }}>
+                <Box sx={{width: 320}}>
+                    <SortFilter />
+                </Box>
+            </Box>
             <Box
                 sx={{
                     display: "flex",
@@ -63,7 +74,7 @@ function Home() {
                         />
                     ))}
             </Box>
-        </div>
+        </Box>
     );
 }
 

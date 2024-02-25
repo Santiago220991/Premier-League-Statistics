@@ -1,16 +1,17 @@
+export type SortValue = "Name" | "Points_Low" | "Points_High";
 
 export interface League {
-    LeagueData:      LeagueData;
+    LeagueData: LeagueData;
     LeagueStandings: LeagueStanding[];
 }
 
 export interface LeagueData {
-    id:      number;
-    name:    Name;
+    id: number;
+    name: Name;
     country: string;
-    logo:    string;
-    flag:    string;
-    season:  number;
+    logo: string;
+    flag: string;
+    season: number;
 }
 
 export enum Name {
@@ -18,30 +19,30 @@ export enum Name {
 }
 
 export interface LeagueStanding {
-    rank:        number;
-    team:        Team;
-    points:      number;
-    goalsDiff:   number;
-    group:       Name;
-    form:        string;
-    status:      Status;
+    rank: number;
+    team: Team;
+    points: number;
+    goalsDiff: number;
+    group: Name;
+    form: string;
+    status: Status;
     description: null | string;
-    all:         SideStatistics;
-    home:        SideStatistics;
-    away:        SideStatistics;
-    update:      Date;
+    all: SideStatistics;
+    home: SideStatistics;
+    away: SideStatistics;
+    update: Date;
 }
 
 export interface SideStatistics {
     played: number;
-    win:    number;
-    draw:   number;
-    lose:   number;
-    goals:  Goals;
+    win: number;
+    draw: number;
+    lose: number;
+    goals: Goals;
 }
 
 export interface Goals {
-    for:     number;
+    for: number;
     against: number;
 }
 
@@ -50,8 +51,7 @@ export enum Status {
 }
 
 export interface Team {
-    id:   number;
+    id: number;
     name: string;
     logo: string;
 }
-

@@ -1,7 +1,8 @@
 import React, {SetStateAction} from "react";
 import {createContext, useEffect, useMemo, useState} from "react";
-import {LeagueData, LeagueStanding} from "../models";
+import {LeagueData, LeagueStanding, SortValue} from "../models";
 import {getLeagueStatisticsService} from "../services";
+import {sortOptions} from "../utils";
 
 interface LeagueContextValue {
     statistics: LeagueStanding[] | null;
@@ -11,6 +12,7 @@ interface LeagueContextValue {
     searchedStatistics: LeagueStanding[] | undefined;
     season: string;
     setSeason: React.Dispatch<SetStateAction<string>>;
+    sortStandings: (sortValue: SortValue) => void;
 }
 
 const LeagueContext = createContext<LeagueContextValue>({
@@ -21,6 +23,7 @@ const LeagueContext = createContext<LeagueContextValue>({
     searchedStatistics: [],
     season: "",
     setSeason: () => {},
+    sortStandings: () => {},
 });
 
 function LeagueProvider({children}: {children: React.ReactNode}) {
@@ -51,6 +54,13 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
         getLeagueStatistics(season);
     }, [season]);
 
+    const sortStandings = (sortValue: SortValue) => {
+        const sortFunction = sortOptions[sortValue];
+        if (sortFunction) {
+            setStatistics([...statistics!.sort(sortFunction)]);
+        }
+    };
+
     const contextValue: LeagueContextValue = useMemo(
         () => ({
             loading,
@@ -60,6 +70,7 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
             searchedStatistics,
             season,
             setSeason,
+            sortStandings,
         }),
         [
             loading,
@@ -69,6 +80,7 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
             searchedStatistics,
             season,
             setSeason,
+            sortStandings,
         ],
     );
 

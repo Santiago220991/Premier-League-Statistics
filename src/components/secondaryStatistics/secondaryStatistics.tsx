@@ -8,13 +8,14 @@ function SecondaryStatistics({
     sideStatistics: SideStatistics;
 }) {
     return (
-        <Box data-testid={"secondary-statistics-container"}
+        <Box
+            data-testid={"secondary-statistics-container"}
             sx={{
                 display: "flex",
                 justifyContent: "space-between",
                 marginTop: "3vh",
-                marginLeft:{sm:"20%"},
-                marginRight:{sm:"20%"}
+                marginLeft: {sm: "20%"},
+                marginRight: {sm: "20%"},
             }}>
             <Box
                 sx={{
