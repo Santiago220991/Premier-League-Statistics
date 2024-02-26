@@ -13,6 +13,7 @@ interface LeagueContextValue {
     season: string;
     setSeason: React.Dispatch<SetStateAction<string>>;
     sortStandings: (sortValue: SortValue) => void;
+    error: boolean | unknown;
 }
 
 const LeagueContext = createContext<LeagueContextValue>({
@@ -24,10 +25,12 @@ const LeagueContext = createContext<LeagueContextValue>({
     season: "",
     setSeason: () => {},
     sortStandings: () => {},
+    error: false,
 });
 
 function LeagueProvider({children}: {children: React.ReactNode}) {
     const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<boolean | unknown>(false);
     const [statistics, setStatistics] = useState<LeagueStanding[] | null>(null);
     const [league, setLeague] = useState<LeagueData | null>(null);
     const [searchName, setSearchName] = useState<string>("");
@@ -40,7 +43,7 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
             setLeague(response.LeagueData);
             setStatistics(response.LeagueStandings);
         } catch (err) {
-            console.log(err);
+            setError(err);
         } finally {
             setLoading(false);
         }
@@ -71,6 +74,7 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
             season,
             setSeason,
             sortStandings,
+            error,
         }),
         [
             loading,
@@ -81,6 +85,7 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
             season,
             setSeason,
             sortStandings,
+            error,
         ],
     );
 

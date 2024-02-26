@@ -1,5 +1,7 @@
 export type SortValue = "Name" | "Points_Low" | "Points_High";
 
+export type Severity = "error" | "success" | "info" | "warning" | undefined;
+
 export interface League {
     LeagueData: LeagueData;
     LeagueStandings: LeagueStanding[];

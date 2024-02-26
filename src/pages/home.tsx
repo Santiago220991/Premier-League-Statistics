@@ -8,10 +8,11 @@ import {
     Header,
     SeasonSelector,
     SortFilter,
+    AlertComponent,
 } from "../components";
 
 function Home() {
-    const {league, loading, searchedStatistics} = useLeagueContext();
+    const {league, loading, searchedStatistics, error} = useLeagueContext();
 
     if (loading) {
         return <LoadingComponent />;
@@ -25,6 +26,9 @@ function Home() {
                 paddingRight: "5%",
                 paddingBottom: "5vh",
             }}>
+            {error != false && (
+                <AlertComponent severity="error" error={error} />
+            )}
             <Header />
             <Box
                 style={{
