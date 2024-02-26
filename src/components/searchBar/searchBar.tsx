@@ -15,6 +15,7 @@ function SearchBar() {
                 id="searchBar"
                 variant="standard"
                 onChange={e => setSearchName(e.target.value.toLowerCase())}
+                placeholder="Search team..."
             />
         </Box>
     );
