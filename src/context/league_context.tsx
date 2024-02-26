@@ -8,6 +8,7 @@ interface LeagueContextValue {
     statistics: LeagueStanding[] | null;
     league: LeagueData | null;
     loading: boolean;
+    searchName: string;
     setSearchName: React.Dispatch<SetStateAction<string>>;
     searchedStatistics: LeagueStanding[] | undefined;
     season: string;
@@ -20,6 +21,7 @@ const LeagueContext = createContext<LeagueContextValue>({
     statistics: null,
     league: null,
     loading: false,
+    searchName: "",
     setSearchName: () => {},
     searchedStatistics: [],
     season: "",
@@ -70,6 +72,7 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
             statistics,
             league,
             setSearchName,
+            searchName,
             searchedStatistics,
             season,
             setSeason,
@@ -81,6 +84,7 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
             statistics,
             league,
             setSearchName,
+            searchName,
             searchedStatistics,
             season,
             setSeason,

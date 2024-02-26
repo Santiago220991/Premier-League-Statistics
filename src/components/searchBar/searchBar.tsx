@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import {Box, TextField} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import {useLeagueContext} from "../../hooks";
 
 function SearchBar() {
-    const {setSearchName} = useLeagueContext();
+    const {setSearchName, searchName} = useLeagueContext();
+    const [searchValue, setSearchValue]=useState<string>(searchName)
 
+    const handleChange= (value:string) =>{
+        setSearchName(value)
+        setSearchValue(value)
+    }
     return (
         <Box
             data-testid="searchBar-container"
@@ -13,8 +18,9 @@ function SearchBar() {
             <SearchIcon />
             <TextField
                 id="searchBar"
+                value={searchValue}
                 variant="standard"
-                onChange={e => setSearchName(e.target.value.toLowerCase())}
+                onChange={event => handleChange(event.target.value.toLowerCase())}
                 placeholder="Search team..."
             />
         </Box>
