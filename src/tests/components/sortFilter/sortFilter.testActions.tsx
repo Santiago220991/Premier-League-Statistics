@@ -12,6 +12,7 @@ const getComponentByTestId = (componentTestId: string) => {
 
 const mockLeagueContext = {
     setSortFilter: jest.fn(),
+    sortValue: "Points_High"
 };
 
 jest.mock("../../../hooks", () => ({

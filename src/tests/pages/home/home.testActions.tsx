@@ -119,7 +119,8 @@ const mockLeagueContext = {
     league: {
         logo: "https://example.com/logo.png",
     },
-    season: "2023"
+    season: "2023",
+    sortValue: "Points_High"
 };
 
 jest.mock("../../../hooks", () => ({
