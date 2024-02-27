@@ -32,13 +32,18 @@ function Home() {
             )}
             <Header />
             <Box
-                style={{
+                sx={{
                     display: "flex",
                     alignItems: "center",
                     flexDirection: "column",
                 }}>
                 <img src={league?.logo} />
-                <Box sx={{marginTop: "3vh", marginBottom: "3vh", width: 200}}>
+                <Box
+                    sx={{
+                        marginTop: "3vh",
+                        marginBottom: "3vh",
+                        width: 200,
+                    }}>
                     <SeasonSelector />
                 </Box>
             </Box>
@@ -47,6 +52,8 @@ function Home() {
                     display: "flex",
                     justifyContent: "space-between",
                     alignItems: "flex-end",
+                    paddingRight: "5%",
+                    paddingLeft: "5%",
                 }}>
                 <Typography variant="h6">
                     <strong>TEAMS</strong>
@@ -62,9 +69,10 @@ function Home() {
                 <Box
                     sx={{
                         display: "flex",
-                        flexDirection: "column",
+                        flexDirection: {xs: "column", sm: "row"},
+                        columnGap: {sm: "5%"},
                         rowGap: "3vh",
-                        width: 320,
+                        width: {xs: 320, sm: 500},
                     }}>
                     <PointsFilter />
                     <SortFilter />

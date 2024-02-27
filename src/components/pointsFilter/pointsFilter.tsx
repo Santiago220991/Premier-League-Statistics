@@ -24,6 +24,7 @@ function PointsFilter() {
                 paddingBottom: 1,
                 border: `solid #B5B5B6 1px`,
                 borderRadius: 1,
+                width: {sm: 700},
             }}>
             <InputLabel
                 sx={{backgroundColor: gray, paddingLeft: 0.5, paddingRight: 2}}
@@ -36,7 +37,10 @@ function PointsFilter() {
                 name="points-filter-name"
                 value={pointsRate}
                 onChange={event => handleChange(event.target.value)}
-                sx={{display: "flex", justifyContent: "space-between"}}>
+                sx={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                }}>
                 <FormControlLabel
                     value={100}
                     control={<Radio />}
