@@ -9,6 +9,7 @@ import {
     SeasonSelector,
     SortFilter,
     AlertComponent,
+    PointsFilter,
 } from "../components";
 
 function Home() {
@@ -58,7 +59,14 @@ function Home() {
                     justifyContent: "center",
                     marginTop: "5vh",
                 }}>
-                <Box sx={{width: 320}}>
+                <Box
+                    sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        rowGap: "3vh",
+                        width: 320,
+                    }}>
+                    <PointsFilter />
                     <SortFilter />
                 </Box>
             </Box>

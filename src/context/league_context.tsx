@@ -15,6 +15,10 @@ interface LeagueContextValue {
     setSeason: React.Dispatch<SetStateAction<string>>;
     sortStandings: (sortValue: SortValue) => void;
     error: boolean | unknown;
+    setPointsRate: React.Dispatch<SetStateAction<number>>;
+    pointsRate: number;
+    sortValue: SortValue;
+    setSortValue: React.Dispatch<SetStateAction<SortValue>>;
 }
 
 const LeagueContext = createContext<LeagueContextValue>({
@@ -28,6 +32,10 @@ const LeagueContext = createContext<LeagueContextValue>({
     setSeason: () => {},
     sortStandings: () => {},
     error: false,
+    setPointsRate: () => {},
+    pointsRate: 0,
+    setSortValue: () => {},
+    sortValue: "Points_High",
 });
 
 function LeagueProvider({children}: {children: React.ReactNode}) {
@@ -37,6 +45,8 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
     const [league, setLeague] = useState<LeagueData | null>(null);
     const [searchName, setSearchName] = useState<string>("");
     const [season, setSeason] = useState<string>("2023");
+    const [pointsRate, setPointsRate] = useState<number>(100);
+    const [sortValue, setSortValue] = useState<SortValue>("Points_High");
 
     const getLeagueStatistics = async (season: string) => {
         setLoading(true);
@@ -51,18 +61,27 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
         }
     };
 
-    const searchedStatistics = statistics?.filter(statistic =>
+    const filteredStatistics = statistics?.filter(standing => {
+        const pointsCheck = pointsRate === 0 || standing.points <= pointsRate;
+        return pointsCheck;
+    });
+
+    const searchedStatistics = filteredStatistics?.filter(statistic =>
         statistic.team.name.toLowerCase().includes(searchName!),
     );
 
     useEffect(() => {
-        getLeagueStatistics(season);
+        const fetchData = async () => {
+            await getLeagueStatistics(season);
+            sortStandings(sortValue);
+        };
+        fetchData();
     }, [season]);
 
     const sortStandings = (sortValue: SortValue) => {
         const sortFunction = sortOptions[sortValue];
-        if (sortFunction) {
-            setStatistics([...statistics!.sort(sortFunction)]);
+        if (sortFunction && statistics) {
+            setStatistics([...statistics.sort(sortFunction)]);
         }
     };
 
@@ -78,6 +97,10 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
             setSeason,
             sortStandings,
             error,
+            setPointsRate,
+            pointsRate,
+            setSortValue,
+            sortValue,
         }),
         [
             loading,
@@ -90,6 +113,10 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
             setSeason,
             sortStandings,
             error,
+            setPointsRate,
+            pointsRate,
+            setSortValue,
+            sortValue,
         ],
     );
 

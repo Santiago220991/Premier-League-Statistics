@@ -1,5 +1,4 @@
-import React from "react"
-import {useState} from "react";
+import React from "react";
 import {useLeagueContext} from "../../hooks";
 import {
     FormControl,
@@ -11,8 +10,8 @@ import {
 import {SortValue} from "../../models";
 
 function SortFilter() {
-    const {sortStandings} = useLeagueContext();
-    const [sortValue, setSortValue] = useState<SortValue>("Points_High");
+    const {sortValue, setSortValue, sortStandings} = useLeagueContext();
+
     const changeSortValue = (value: SortValue) => {
         setSortValue(value);
         sortStandings(value);
