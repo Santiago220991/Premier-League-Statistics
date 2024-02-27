@@ -71,11 +71,8 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
     );
 
     useEffect(() => {
-        const fetchData = async () => {
-            await getLeagueStatistics(season);
-            sortStandings(sortValue);
-        };
-        fetchData();
+        getLeagueStatistics(season);
+        setSortValue("Points_High")
     }, [season]);
 
     const sortStandings = (sortValue: SortValue) => {
