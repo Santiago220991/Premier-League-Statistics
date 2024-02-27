@@ -10,6 +10,7 @@ import {
     SortFilter,
     AlertComponent,
     PointsFilter,
+    TransitionComponent,
 } from "../components";
 
 function Home() {
@@ -66,17 +67,19 @@ function Home() {
                     justifyContent: "center",
                     marginTop: "5vh",
                 }}>
-                <Box
-                    sx={{
-                        display: "flex",
-                        flexDirection: {xs: "column", sm: "row"},
-                        columnGap: {sm: "5%"},
-                        rowGap: "3vh",
-                        width: {xs: 320, sm: 500},
-                    }}>
-                    <PointsFilter />
-                    <SortFilter />
-                </Box>
+                <TransitionComponent>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            flexDirection: {xs: "column", sm: "row"},
+                            columnGap: {sm: "5%"},
+                            rowGap: "3vh",
+                            width: {xs: 320, sm: 500},
+                        }}>
+                        <PointsFilter />
+                        <SortFilter />
+                    </Box>
+                </TransitionComponent>
             </Box>
             <Box
                 sx={{
