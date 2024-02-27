@@ -7,3 +7,4 @@ export * from "./secondaryStatistics";
 export * from "./seasonSelector";
 export * from "./sortFilter";
 export * from "./alertComponent";
+export * from "./pointsFilter";
