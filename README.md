@@ -2,6 +2,10 @@
 
 This single-page application shows the Premier League statistics from the seasons 2019 to 2020. This app shows a list of the teams that participated in the tournament and also shows the statistics of every team during that season. The app was designed with an approach mobile first. Therefore there are desktop and mobile view versions.
 
+<p align="center">
+<img src="https://github.com/Santiago220991/Premier-League-Statistics/assets/98363075/19affc92-385c-471b-9e89-6ef3d5cf3732" />
+</p>
+
 ## Built With
 
 - React
