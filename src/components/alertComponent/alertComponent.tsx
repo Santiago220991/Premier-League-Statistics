@@ -20,7 +20,11 @@ function AlertComponent({
         message = error.message;
     }
     return (
-        <Snackbar data-testid="alertComponent-container" open={open} autoHideDuration={3000} onClose={handleClose}>
+        <Snackbar
+            data-testid="alertComponent-container"
+            open={open}
+            autoHideDuration={3000}
+            onClose={handleClose}>
             {<Alert severity={severity}>{message}</Alert>}
         </Snackbar>
     );

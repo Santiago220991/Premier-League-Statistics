@@ -72,7 +72,7 @@ function LeagueProvider({children}: {children: React.ReactNode}) {
 
     useEffect(() => {
         getLeagueStatistics(season);
-        setSortValue("Points_High")
+        setSortValue("Points_High");
     }, [season]);
 
     const sortStandings = (sortValue: SortValue) => {
